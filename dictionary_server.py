@@ -14,7 +14,7 @@ abort = False
 
 app = Flask(__name__)
 
-@app.route('/urbandictionaryphrases')
+@app.route('/urban')
 def dictionary_server():
     root = generate.random_phrase()
     head="""
