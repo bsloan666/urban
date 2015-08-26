@@ -22,7 +22,7 @@ abort = False
 app = Flask(__name__)
 
 @app.route('/urbandictionaryphrases')
-def toplevel():
+def dictionary_server():
     root = generate.random_phrase()
     head="""
         <html>
