@@ -9,6 +9,7 @@ def init_db(fname):
     handle.close()
     return lines
 
+
 def random_phrase():
     adjs = init_db('adjectives.db')
     nouns = init_db('nouns.db')
