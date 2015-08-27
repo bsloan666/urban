@@ -1,5 +1,3 @@
 flask
-urllib2
-json
 gunicorn
 
