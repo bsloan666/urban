@@ -14,7 +14,6 @@
         }
         div.center {
             align: middle;
-            font-size: tiny;
         }
         </style>
     </head>
