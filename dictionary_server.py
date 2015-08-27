@@ -22,7 +22,7 @@ def find_image(phrase):
     while attempts < 3:
         try:
             webstr = \
-                "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s&safe=active"%(
+                "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s&safe=active&imgsz=large"%(
                     cgi.escape(phrase))
             print cgi.escape(phrase)    
             print webstr
