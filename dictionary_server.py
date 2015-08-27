@@ -1,67 +1,68 @@
 #!/usr/bin/env python
 
 import os
-import re 
+import re
 import sys
-import json 
+import json
 import urllib2
 import cgi
 
 from flask import Flask
 from flask import make_response
-from flask import request 
+from flask import render_template
+from flask import request
+
+import requests
+
 import generate
 
 abort = False
 
 app = Flask(__name__)
 
-def find_image(phrase):
-    attempts = 0
-    phrase = re.sub(' ','+',phrase)
-    while attempts < 3:
-        try:
-            webstr = \
-                "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s&safe=active&imgsz=large"%(
-                    cgi.escape(phrase))
-            print cgi.escape(phrase)    
-            print webstr
-            response = urllib2.urlopen(webstr,timeout = 5)
-                    
-            content = response.read()
-            results = json.loads(content)
-            for imgdict in results['responseData']['results']:
-                if imgdict['url'].endswith('jpg'):
-                    return imgdict['url']
-                
-        except urllib2.URLError as e:
-            attempts += 1
-            print type(e)
 
-@app.route('/urban')
-def toplevel():
-    root = generate.random_phrase()
-    head="""
-        <html>
-        <head>
-        <style>
-        h2 {text-align:center;}
-        p {text-align:center;}
-        img.displayed {
-            display: block;
-            margin-left: auto;
-            margin-right: auto }
-        </style>
-        </head>
-        <body><br><br><br><br><br><h2><font face=arial>"""
-    foot="""
-        </font></h2><br><img class="displayed" src="%s" alt="%s" align="middle"/></body>
-        </html>"""
-    resp = make_response("%s%s%s"%(head,cgi.escape(root),foot%(find_image(root),root)))
-    resp.headers['Content-Type'] = 'text/html'
-    resp.headers['access-control-allow-origin'] = '*'
-    return resp 
+def find_image(phrase, animated=False):
+    attempts = 0
+
+    qs = {
+        "v": 1.0,
+        "q": phrase,
+        "safe": "active",
+        "imgsz": "large",
+        "userip": request.remote_addr,
+    }
+
+    ext_filters = ['.jpg', '.png', '.gif']
+    # Kind of working :-/
+    if animated:
+        qs["as_filetype"] = "gif"
+        ext_filters = ['.gif']
+
+    resp = requests.get("https://ajax.googleapis.com/ajax/services/search/images", params=qs)
+    if resp.status_code == 200:
+        results = resp.json()
+        for imgdict in results['responseData']['results']:
+            img_url = imgdict['url']
+            _, ext = os.path.splitext(img_url)
+            if ext.lower() in ext_filters:
+                return img_url
+
+    return ""
+
+
+@app.route('/')
+def index():
+    seed = generate.random_seed()
+    if request.args.get('s'):
+        seed = request.args.get('s').strip()
+
+    animated = False
+    if request.args.get('a') is not None:
+        animated = True
+
+    root = generate.random_seeded_phrase(seed)
+    return render_template('index.html.tpl', text=root, img=find_image(root, animated), seed=seed)
+
 
 if __name__ == '__main__':
-    app.run()
-
+    app.run(debug=True)
