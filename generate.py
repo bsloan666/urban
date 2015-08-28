@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import os
+import re
 import time
 import string
 from random import shuffle, Random
@@ -15,7 +16,7 @@ def init_db(fname):
 
 
 def random_phrase():
-    adjs = init_db('adjectives.db')
+    adjs =  init_db('adjectives.db')
     nouns = init_db('nouns.db')
 
     shuffle(adjs)
@@ -27,7 +28,12 @@ def random_phrase():
     shuffle(a_range)
     shuffle(n_range)
 
-    return "%s %s"%(adjs[a_range[0]].strip(), nouns[n_range[0]].strip())
+    tmp =  nouns[n_range[0]].strip()
+    noun,alt_noun = re.split('\|', tmp)
+    tmp =  adjs[a_range[0]].strip()
+    adj,alt_adj = re.split('\|', tmp)
+
+    return (adj, alt_adj, noun, alt_noun)
 
 
 def random_seed():

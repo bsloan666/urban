@@ -20,7 +20,6 @@ abort = False
 
 app = Flask(__name__)
 
-
 def find_image(phrase, animated=False):
     attempts = 0
 
@@ -32,11 +31,12 @@ def find_image(phrase, animated=False):
         "userip": request.remote_addr,
     }
 
-    ext_filters = ['.jpg', '.png', '.gif']
+    #ext_filters = ['.jpg', '.png', '.gif']
+    ext_filters = ['.jpg']
     # Kind of working :-/
-    if animated:
-        qs["as_filetype"] = "gif"
-        ext_filters = ['.gif']
+    #if animated:
+    #    qs["as_filetype"] = "gif"
+    #    ext_filters = ['.gif']
 
     resp = requests.get("https://ajax.googleapis.com/ajax/services/search/images", params=qs)
     if resp.status_code == 200:
@@ -56,12 +56,14 @@ def index():
     if request.args.get('s'):
         seed = request.args.get('s').strip()
 
-    animated = False
+    animated = False 
     if request.args.get('a') is not None:
         animated = True
 
-    root = generate.random_seeded_phrase(seed)
-    return render_template('index.html.tpl', text=root, img=find_image(root, animated), seed=seed)
+    adj,alt_adj,noun,alt_noun = generate.random_phrase()
+    root = '%s %s'%(adj,noun)
+    imgroot = '%s %s'%(alt_adj,alt_noun)
+    return render_template('index.html.tpl', text=root, img=find_image(imgroot, animated), seed=seed)
 
 
 if __name__ == '__main__':
