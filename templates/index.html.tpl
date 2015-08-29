@@ -30,7 +30,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            max-width: 25%;
+            max-width: 66%;
         }
         div.center {
             align: middle;
@@ -40,7 +40,7 @@
     <body>
         <br><br>
         <p><a href="javascript:window.location.reload();">Reload</a><p>
-        <br><br><br>
+        <br><br>
         <h2>{{ text }}</h2>
         <br>
         <div id="center">

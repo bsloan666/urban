@@ -31,12 +31,12 @@ def find_image(phrase, animated=False):
         "userip": request.remote_addr,
     }
 
-    #ext_filters = ['.jpg', '.png', '.gif']
-    ext_filters = ['.jpg']
-    # Kind of working :-/
-    #if animated:
-    #    qs["as_filetype"] = "gif"
-    #    ext_filters = ['.gif']
+    ext_filters = ['.jpg', '.png', '.gif']
+    #ext_filters = ['.jpg']
+    #Kind of working :-/
+    if animated:
+        qs["as_filetype"] = "gif"
+        ext_filters = ['.gif']
 
     resp = requests.get("https://ajax.googleapis.com/ajax/services/search/images", params=qs)
     if resp.status_code == 200:
