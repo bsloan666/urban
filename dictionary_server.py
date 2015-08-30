@@ -50,6 +50,9 @@ def find_image(phrase, animated=False, unsafe=False):
 
     return ""
 
+def space_to_plus(mystr):
+    return re.sub(" ","+", mystr)    
+
 
 @app.route('/')
 def index():
@@ -74,7 +77,8 @@ def index():
         imgurl = find_image(imgroot, animated, unsafe) 
 
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], adj,noun, imgurl)
+    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
+        space_to_plus(adj),space_to_plus(noun), imgurl)
 
     return render_template('index.html.tpl', text=root, img=imgurl, 
         permalink=thisview, current_url=curr)
