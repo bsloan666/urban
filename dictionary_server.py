@@ -20,16 +20,17 @@ abort = False
 
 app = Flask(__name__)
 
-def find_image(phrase, animated=False):
+def find_image(phrase, animated=False, unsafe=False):
     attempts = 0
 
     qs = {
         "v": 1.0,
         "q": phrase,
-        "safe": "active",
         "imgsz": "large",
         "userip": request.remote_addr,
     }
+    if not unsafe:
+        qs["safe"] =  "active",
 
     ext_filters = ['.jpg', '.png', '.gif']
     #ext_filters = ['.jpg']
@@ -52,18 +53,26 @@ def find_image(phrase, animated=False):
 
 @app.route('/')
 def index():
-    seed = generate.random_seed()
-    if request.args.get('s'):
-        seed = request.args.get('s').strip()
 
+    unsafe = False
     animated = False 
     if request.args.get('a') is not None:
         animated = True
+    if request.args.get('u') is not None:
+        unsafe = True
+    if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
+        adj = request.args.get('adj')
+        noun = request.args.get('noun')
+        imgurl = request.args.get('imgurl')
+    else:
+        adj,alt_adj,noun,alt_noun = generate.random_phrase()
+        imgroot = '%s %s'%(alt_adj,alt_noun)
+        imgurl = find_image(imgroot, animated, unsafe) 
 
-    adj,alt_adj,noun,alt_noun = generate.random_phrase()
     root = '%s %s'%(adj,noun)
-    imgroot = '%s %s'%(alt_adj,alt_noun)
-    return render_template('index.html.tpl', text=root, img=find_image(imgroot, animated), seed=seed)
+    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], adj,noun, imgurl)
+
+    return render_template('index.html.tpl', text=root, img=imgurl, permalink=thisview)
 
 
 if __name__ == '__main__':
