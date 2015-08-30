@@ -56,10 +56,14 @@ def index():
 
     unsafe = False
     animated = False 
+    curr = "http://%s/?"%request.environ['HTTP_HOST']
     if request.args.get('a') is not None:
         animated = True
+        curr +="a=1&"
     if request.args.get('u') is not None:
         unsafe = True
+        curr +="u=1"
+
     if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
         adj = request.args.get('adj')
         noun = request.args.get('noun')
@@ -72,7 +76,8 @@ def index():
     root = '%s %s'%(adj,noun)
     thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], adj,noun, imgurl)
 
-    return render_template('index.html.tpl', text=root, img=imgurl, permalink=thisview)
+    return render_template('index.html.tpl', text=root, img=imgurl, 
+        permalink=thisview, current_url=curr)
 
 
 if __name__ == '__main__':

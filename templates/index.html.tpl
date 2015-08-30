@@ -51,7 +51,7 @@
     <body>
         <br><br>
         <!-- <p><a href="javascript:window.location.reload();">Reload</a><p>-->
-        <p><a href=/>Reload</a><p>
+        <p><a href={{current_url}}>Reload</a><p>
         <br>
         <h2>{{ text }}</h2>
         <br>
