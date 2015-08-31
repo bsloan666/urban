@@ -11,6 +11,7 @@ from flask import Flask
 from flask import make_response
 from flask import render_template
 from flask import request
+from flask import escape
 
 import requests
 
@@ -53,6 +54,8 @@ def find_image(phrase, animated=False, unsafe=False):
 def space_to_plus(mystr):
     return re.sub(" ","+", mystr)    
 
+def colon_to_pct(mystr):
+    return re.sub(":","%3A", mystr)    
 
 @app.route('/')
 def index():
@@ -69,9 +72,9 @@ def index():
         curr +="u=1"
 
     if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
-        adj = request.args.get('adj')
-        noun = request.args.get('noun')
-        imgurl = request.args.get('imgurl')
+        adj = escape(request.args.get('adj'))
+        noun = escape(request.args.get('noun'))
+        imgurl = escape(request.args.get('imgurl'))
     else:
         adj,alt_adj,noun,alt_noun = generate.random_phrase()
         imgroot = '%s %s'%(alt_adj,alt_noun)
@@ -81,7 +84,7 @@ def index():
     thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
-    quote=urllib2.quote(thisview)
+    quote=urllib2.quote(colon_to_pct(thisview))
     
 
     return render_template('index.html.tpl', text=root, img=imgurl, 
