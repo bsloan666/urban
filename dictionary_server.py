@@ -11,6 +11,7 @@ from flask import Flask
 from flask import make_response
 from flask import render_template
 from flask import request
+from flask import escape
 
 import requests
 
@@ -51,16 +52,16 @@ def find_image(phrase, animated=False, unsafe=False):
     return ""
 
 def space_to_plus(mystr):
-    return re.sub(" ","+", mystr)    
+    return re.sub(" ","+", mystr)
 
 
 @app.route('/')
 def index():
 
     unsafe = False
-    animated = False 
+    animated = False
     base = "http://%s"%request.environ['HTTP_HOST']
-    curr = base + "/?" 
+    curr = base + "/?"
     if request.args.get('a') is not None:
         animated = True
         curr +="a=1&"
@@ -69,21 +70,21 @@ def index():
         curr +="u=1"
 
     if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
-        adj = request.args.get('adj')
-        noun = request.args.get('noun')
-        imgurl = request.args.get('imgurl')
+        adj = escape(request.args.get('adj'))
+        noun = escape(request.args.get('noun'))
+        imgurl = escape(request.args.get('imgurl'))
     else:
         adj,alt_adj,noun,alt_noun = generate.random_phrase()
         imgroot = '%s %s'%(alt_adj,alt_noun)
-        imgurl = find_image(imgroot, animated, unsafe) 
+        imgurl = find_image(imgroot, animated, unsafe)
 
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
+    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'],
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
-    
 
-    return render_template('index.html.tpl', text=root, img=imgurl, 
+
+    return render_template('index.html.tpl', text=root, img=imgurl,
         permalink=thisview, current_url=curr, baseurl=base)
 
 
