@@ -39,6 +39,7 @@
         }
         textarea.displayed {
             display: block;
+            color: #AAAAAA;
             margin-left: auto;
             margin-right: auto;
             max-width: 66%;
@@ -51,14 +52,28 @@
     <body>
         <br><br>
         <!-- <p><a href="javascript:window.location.reload();">Reload</a><p>-->
-        <p><a href={{current_url}}>Reload</a><p>
+        <p><a href={{current_url}}>Shuffle</a><p>
         <br>
         <h2>{{ text }}</h2>
         <br>
         <div id="center">
             <img class="displayed" src="{{img}}" alt="{{text}}" align="middle"/>
-            <p><b>Share</b></p>
-             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea> 
+            <br>
+            <p><b>Share</b>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{permalink}}">
+            <img src="{{baseurl}}/static/images/facebook_gray_small.jpg" alt="fb" 
+                onmouseover="this.src='{{baseurl}}/static/images/facebook_blue_small.jpg'" 
+                onmouseout="this.src='{{baseurl}}/static/images/facebook_gray_small.jpg'"/></a>
+            <a href="https://twitter.com/home?status={{permalink}}">
+            <img src="{{baseurl}}/static/images/twitter_gray_small.jpg" alt="twitter"
+                onmouseover="this.src='{{baseurl}}/static/images/twitter_blue_small.jpg'" 
+                onmouseout="this.src='{{baseurl}}/static/images/twitter_gray_small.jpg'"/></a>
+            <a href="https://plus.google.com/share?url={{permalink}}">
+            <img src="{{baseurl}}/static/images/googleplus_gray_small.jpg" alt="gplus"
+                onmouseover="this.src='{{baseurl}}/static/images/googleplus_red_small.jpg'"
+                onmouseout="this.src='{{baseurl}}/static/images/googleplus_gray_small.jpg'"/></a>
+            </p>
+            <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea> 
         </div>
     </body>
 </html>

@@ -59,7 +59,8 @@ def index():
 
     unsafe = False
     animated = False 
-    curr = "http://%s/?"%request.environ['HTTP_HOST']
+    base = "http://%s"%request.environ['HTTP_HOST']
+    curr = base + "/?" 
     if request.args.get('a') is not None:
         animated = True
         curr +="a=1&"
@@ -80,8 +81,10 @@ def index():
     thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
+    
+
     return render_template('index.html.tpl', text=root, img=imgurl, 
-        permalink=thisview, current_url=curr)
+        permalink=thisview, current_url=curr, baseurl=base)
 
 
 if __name__ == '__main__':
