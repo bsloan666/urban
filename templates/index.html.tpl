@@ -60,15 +60,15 @@
             <img class="displayed" src="{{img}}" alt="{{text}}" align="middle"/>
             <br>
             <p><b>Share</b>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{permalink}}">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{quotelink}}">
             <img src="{{baseurl}}/static/images/facebook_gray_small.jpg" alt="fb" 
                 onmouseover="this.src='{{baseurl}}/static/images/facebook_blue_small.jpg'" 
                 onmouseout="this.src='{{baseurl}}/static/images/facebook_gray_small.jpg'"/></a>
-            <a href="https://twitter.com/home?status={{permalink}}">
+            <a href="https://twitter.com/home?status={{quotelink}}">
             <img src="{{baseurl}}/static/images/twitter_gray_small.jpg" alt="twitter"
                 onmouseover="this.src='{{baseurl}}/static/images/twitter_blue_small.jpg'" 
                 onmouseout="this.src='{{baseurl}}/static/images/twitter_gray_small.jpg'"/></a>
-            <a href="https://plus.google.com/share?url={{permalink}}">
+            <a href="https://plus.google.com/share?url={{quotelink}}">
             <img src="{{baseurl}}/static/images/googleplus_gray_small.jpg" alt="gplus"
                 onmouseover="this.src='{{baseurl}}/static/images/googleplus_red_small.jpg'"
                 onmouseout="this.src='{{baseurl}}/static/images/googleplus_gray_small.jpg'"/></a>

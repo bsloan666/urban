@@ -81,10 +81,11 @@ def index():
     thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
+    quote=urllib2.quote(thisview)
     
 
     return render_template('index.html.tpl', text=root, img=imgurl, 
-        permalink=thisview, current_url=curr, baseurl=base)
+        permalink=thisview, current_url=curr, baseurl=base, quotelink=quote)
 
 
 if __name__ == '__main__':
