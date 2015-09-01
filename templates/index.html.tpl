@@ -36,6 +36,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 66%;
+            text-align: center;
         }
         textarea.displayed {
             display: block;
@@ -57,7 +58,7 @@
         <h2>{{ text }}</h2>
         <br>
         <div id="center">
-            <img class="displayed" src="{{img}}" alt="{{text}}" align="middle"/>
+            <img class="displayed" src="{{img}}" alt=" Oh, Google. Really? No images for {{text}}?" align="middle"/>
             <br>
             <p><b>Share</b>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{quotelink}}">
