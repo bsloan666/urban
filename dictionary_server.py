@@ -63,13 +63,15 @@ def index():
     unsafe = False
     animated = False 
     base = "http://%s"%request.environ['HTTP_HOST']
-    curr = base + "/?" 
+    curr = base
+    animchecked = ""
+    unsfchecked = ""
     if request.args.get('a') is not None:
         animated = True
-        curr +="a=1&"
+        animchecked = "checked"
     if request.args.get('u') is not None:
         unsafe = True
-        curr +="u=1"
+        unsfchecked = "checked"
 
     if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
         adj = escape(request.args.get('adj'))
@@ -88,7 +90,8 @@ def index():
     
 
     return render_template('index.html.tpl', text=root, img=imgurl, 
-        permalink=thisview, current_url=curr, baseurl=base, quotelink=quote)
+        permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
+        animchecked=animchecked, unsfchecked=unsfchecked)
 
 
 if __name__ == '__main__':
