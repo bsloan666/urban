@@ -70,20 +70,27 @@
             function anim() {
                 var x = document.getElementById("animatedGifs");
                 if(x.checked){
-                    return 'a=1';
+                    return 'a=1&';
                 }
                 return "";
             }   
             function unsf() {
                 var x = document.getElementById("unsafeContent");
                 if(x.checked){
-                    return '&u=1';
+                    return 'u=1&';
+                }
+                return "";
+            }  
+            function rndmr() {
+                var x = document.getElementById("randomNouns");
+                if(x.checked){
+                    return 'r=1';
                 }
                 return "";
             }  
             function shufflelink() {
                 window.location.href =
-                  "{{current_url}}" + "/?" + anim() + unsf();
+                  "{{current_url}}" + "/?" + anim() + unsf() + rndmr();
             }
         </script>
             
@@ -115,6 +122,7 @@
             <p>
             <input id="animatedGifs" type="checkbox" name="a" {{animchecked}} />animated&nbsp
             <input id="unsafeContent" type="checkbox" name="u" {{unsfchecked}}/>not easily offended&nbsp
+            <input id="randomNouns" type="checkbox" name="r" {{randchecked}}/>randomer&nbsp
             </p>
         </div>
     </body>

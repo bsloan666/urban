@@ -60,26 +60,33 @@ def colon_to_pct(mystr):
 @app.route('/')
 def index():
 
+    random = False
     unsafe = False
     animated = False 
     base = "http://%s"%request.environ['HTTP_HOST']
     curr = base
     animchecked = ""
     unsfchecked = ""
+    randchecked = ""
     if request.args.get('a') is not None:
         animated = True
         animchecked = "checked"
     if request.args.get('u') is not None:
         unsafe = True
         unsfchecked = "checked"
+    if request.args.get('r') is not None:
+        random = True
+        randchecked = "checked"
 
     if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
         adj = escape(request.args.get('adj'))
         noun = escape(request.args.get('noun'))
         imgurl = escape(request.args.get('imgurl'))
     else:
-        adj,alt_adj,noun,alt_noun = generate.random_phrase()
-        imgroot = '%s %s'%(alt_adj,alt_noun)
+        adj,alt_adj,noun,alt_noun = generate.random_phrase_2()
+        imgroot = '%s %s'%(alt_adj,noun)
+        if random:
+            imgroot = '%s %s'%(alt_adj,alt_noun)
         imgurl = find_image(imgroot, animated, unsafe) 
 
     root = '%s %s'%(adj,noun)
@@ -87,11 +94,10 @@ def index():
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
     quote=urllib2.quote(colon_to_pct(thisview))
-    
 
     return render_template('index.html.tpl', text=root, img=imgurl, 
         permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
-        animchecked=animchecked, unsfchecked=unsfchecked)
+        animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
 
 
 if __name__ == '__main__':
