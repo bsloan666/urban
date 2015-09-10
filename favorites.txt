@@ -29,4 +29,11 @@ http://urbanator.herokuapp.com?adj=Soviet&noun=Lollipop&imgurl=https://www.hosta
 http://urbanator.herokuapp.com?adj=Modesto&noun=Burrito&imgurl=http://4.bp.blogspot.com/-GMrACoVTbvM/UTO_iv_dMiI/AAAAAAAAI6o/enOLlNJXrGo/s1600/carnitas%2Bboiling%2Bcu%2B4.gif
 http://urbanator.herokuapp.com?adj=Murfreesboro&noun=Telescope&imgurl=http://i.telegraph.co.uk/multimedia/archive/02734/nasal_2734051b.jpg
 http://urbanator.herokuapp.com?adj=Oral&noun=Juice&imgurl=http://www.gifbin.com/bin/032012/1332872349_surprise_flying_kick.gif
+http://urbanator.herokuapp.com?adj=Bakersfield&noun=Truffle&imgurl=http://cdn.meme.am/instances/500x/60020879.jpg
+http://urbanator.herokuapp.com?adj=Arkansas&noun=Sasquatch&imgurl=http://media2.fdncms.com/portmerc/imager/rare-candid-footage-of-marc-gasol-enjoying-a-beef-jerky-taco-his-own-speci/u/original/8745511/1363151257-bigtaco.gif
+http://urbanator.herokuapp.com?adj=Missoula&noun=Franks+and+Beans&imgurl=http://dl4.glitter-graphics.net/pub/558/558904lg845xs3hb.gif
+http://urbanator.herokuapp.com?adj=Double+Barreled&noun=Man-Hole&imgurl=http://images1.wikia.nocookie.net/__cb20120813044810/bungie/images/3/38/623_fat-goth-gangster.gif
+http://urbanator.herokuapp.com?adj=Russian&noun=Gordita&imgurl=http://img.photobucket.com/albums/v629/hi-ban/pileofcrap.gif
+
+
 
