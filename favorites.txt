@@ -23,7 +23,6 @@ http://urbanator.herokuapp.com?adj=Oily&noun=Gordita&imgurl=http://38.media.tumb
 http://urbanator.herokuapp.com?adj=Oily&noun=Truffle&imgurl=http://i.imgur.com/6MPrvOE.gif
 http://urbanator.herokuapp.com?adj=Maryland&noun=Soup&imgurl=http://favim.com/orig/201104/13/Favim.com-17395.jpg
 http://urbanator.herokuapp.com?adj=Salty&noun=Piglet&imgurl=https://s-media-cache-ak0.pinimg.com/736x/4b/85/c9/4b85c90e5f433aa249d0a66d9504e9cd.jpg
-http://urbanator.herokuapp.com?adj=Salty&noun=Piglet&imgurl=https://s-media-cache-ak0.pinimg.com/736x/4b/85/c9/4b85c90e5f433aa249d0a66d9504e9cd.jpg
 http://urbanator.herokuapp.com?adj=French&noun=Turtleneck&imgurl=http://2.bp.blogspot.com/_tCcjI6S-GTw/TR67PSc0AzI/AAAAAAAACeE/2tQljfoxl58/s1600/Sardonicus4%252Bcolor.jpg
 http://urbanator.herokuapp.com?adj=Soviet&noun=Lollipop&imgurl=https://www.hostaparadise.com/images/no-image-available.gif
 http://urbanator.herokuapp.com?adj=Modesto&noun=Burrito&imgurl=http://4.bp.blogspot.com/-GMrACoVTbvM/UTO_iv_dMiI/AAAAAAAAI6o/enOLlNJXrGo/s1600/carnitas%2Bboiling%2Bcu%2B4.gif
