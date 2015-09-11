@@ -41,7 +41,7 @@ def build_table():
     myrow = "" 
     contents = ""
     columns = 0
-    for fave in faves:
+    for fave in faves[::-1]:
         data = parse_url(fave)
         myrow += column(link(data['adj'], data['noun'], 
             img(data['adj'], data['noun'],data['imgurl']), fave))

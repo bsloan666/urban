@@ -48,3 +48,7 @@ http://urbanator.herokuapp.com?adj=Creepy&noun=Saxophone&imgurl=http://famewatch
 http://urbanator.herokuapp.com?adj=Dusty&noun=Lollipop&imgurl=http://c8.alamy.com/comp/CYR055/fat-man-with-greasy-shirt-holding-a-lollipop-and-cigar-CYR055.jpg
 http://urbanator.herokuapp.com?adj=Crooked&noun=Hot+Sauce&imgurl=http://ak-hdl.buzzfed.com/static/enhanced/webdr02/2012/11/20/19/anigif_enhanced-buzz-11617-1353458215-1.gif
 http://urbanator.herokuapp.com?adj=Clammy&noun=Tuna+Melt&imgurl=http://www.pbfingers.com/wp-content/uploads/2013/06/TunaMeltsMyHeartDog.png
+http://urbanator.herokuapp.com?adj=Bakersfield&noun=Tuxedo&imgurl=http://www.geekologie.com/2008/10/21/bacon-suit.jpg
+http://urbanator.herokuapp.com?adj=Manchester&noun=Moose+Hoof&imgurl=http://i62.tinypic.com/29gokde.jpg
+http://urbanator.herokuapp.com?adj=Chunky&noun=Back+Rub&imgurl=https://media.giphy.com/media/exe3iWib5NsM8/giphy.gif
+http://urbanator.herokuapp.com?adj=Salty&noun=Loofah&imgurl=https://38.media.tumblr.com/4722a9e60f92e1f5c53d35dedb8e9c55/tumblr_ne3yroIh271tq87b5o1_500.gif
