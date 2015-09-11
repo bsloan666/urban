@@ -92,17 +92,26 @@
                 window.location.href =
                   "{{current_url}}" + "/?" + anim() + unsf() + rndmr();
             }
+            function halloffame() {
+                window.location.href =
+                  "{{current_url}}" + "/?hof=1";
+            }
         </script>
             
     </head>
     <body>
         <br><br>
-        <p><button class="plain" onClick="shufflelink();" >Shuffle</button><p>
+        <p><button class="plain" onClick="shufflelink();" >Shuffle</button></p>
         <h2>{{ text }}</h2>
         <br>
         <div id="center">
             <img class="displayed" src="{{img}}" alt=" Oh, Google. Really? No images for {{text}}?" align="middle"/>
             <br>
+            <p>
+            <input id="animatedGifs" type="checkbox" name="a" {{animchecked}} />animated&nbsp
+            <input id="unsafeContent" type="checkbox" name="u" {{unsfchecked}}/>not easily offended&nbsp
+            <input id="randomNouns" type="checkbox" name="r" {{randchecked}}/>randomer&nbsp
+            </p>
             <p>
             <b>Share</b>&nbsp
             <a href="https://www.facebook.com/sharer/sharer.php?u={{quotelink}}">
@@ -119,11 +128,7 @@
                 onmouseout="this.src='{{baseurl}}/static/images/googleplus_gray_small.jpg'"/></a>
             </p>
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea> 
-            <p>
-            <input id="animatedGifs" type="checkbox" name="a" {{animchecked}} />animated&nbsp
-            <input id="unsafeContent" type="checkbox" name="u" {{unsfchecked}}/>not easily offended&nbsp
-            <input id="randomNouns" type="checkbox" name="r" {{randchecked}}/>randomer&nbsp
-            </p>
+            <p><button class="plain" onClick="halloffame();" >Hall of Fame</button></p>
         </div>
     </body>
 </html>

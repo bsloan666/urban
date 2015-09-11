@@ -29,7 +29,7 @@ databases, suggesting features, forking and compulsively clicking
 the Shuffle button while they should be focusing on work, family
 or sleep.
 
-For a good chukle, have a llok at favorites.txt for some of this app's 
+For a good chukle, have a look at favorites.txt for some of this app's 
 more fortuitous outcomes.
 
 -B. Sloan

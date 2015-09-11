@@ -16,6 +16,7 @@ from flask import escape
 import requests
 
 import generate
+import hall_of_fame
 
 abort = False
 
@@ -95,9 +96,13 @@ def index():
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
-    return render_template('index.html.tpl', text=root, img=imgurl, 
-        permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
-        animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
+    if request.args.get('hof') is not None:
+        table = hall_of_fame.build_table()
+        return render_template('halloffame.html.tpl', table=table )
+    else:    
+        return render_template('index.html.tpl', text=root, img=imgurl, 
+            permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
+            animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
 
 
 if __name__ == '__main__':
