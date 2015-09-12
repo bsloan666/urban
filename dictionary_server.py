@@ -85,7 +85,7 @@ def index():
         imgurl = escape(request.args.get('imgurl'))
     else:
         adj,alt_adj,noun,alt_noun = generate.random_phrase_2()
-        imgroot = '%s %s'%(alt_adj,noun)
+        imgroot = '%s %s'%(adj,noun)
         if random:
             imgroot = '%s %s'%(alt_adj,alt_noun)
         imgurl = find_image(imgroot, animated, unsafe) 

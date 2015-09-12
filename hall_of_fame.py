@@ -41,7 +41,7 @@ def link(adj,noun,img, link):
     return '<a href="'+link+'"><b>'+adj+' '+noun+'</b><br/><p>'+img+'</p><br/><br/></a>'
 
 def load_faves():
-    handle = open('favorites.txt','r')
+    handle = open('favorites.db','r')
     lines = handle.readlines()
     handle.close()
     return lines

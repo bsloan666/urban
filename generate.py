@@ -42,20 +42,18 @@ def random_phrase_2():
     hide_adjs =  init_db('adj.hide.db')
     hide_nouns = init_db('noun.hide.db')
 
-    sa_range = range(len(show_adjs))
-    sn_range = range(len(show_nouns))
-    ha_range = range(len(hide_adjs))
-    hn_range = range(len(hide_nouns))
+    r = Random()
 
-    shuffle(sa_range)
-    shuffle(sn_range)
-    shuffle(ha_range)
-    shuffle(hn_range)
+    r.seed(time.time())
+    sa = r.randint(0, len(show_adjs))
+    sn = r.randint(0, len(show_nouns))
+    ha = r.randint(0, len(hide_adjs))
+    hn = r.randint(0, len(hide_nouns))
 
-    noun =      show_nouns[sn_range[0]].strip()
-    alt_noun =  hide_nouns[hn_range[0]].strip()
-    adj =       show_adjs[sa_range[0]].strip()
-    alt_adj =   hide_adjs[ha_range[0]].strip()
+    noun =      show_nouns[sn].strip()
+    alt_noun =  hide_nouns[hn].strip()
+    adj =       show_adjs[sa].strip()
+    alt_adj =   hide_adjs[ha].strip()
 
     return (adj, alt_adj, noun, alt_noun)
 
