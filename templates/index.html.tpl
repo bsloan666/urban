@@ -1,6 +1,10 @@
 <html>
     <head>
         <style>
+        html,body {
+            margin: 0; 
+            padding: 0;
+        }
         h2 {
             text-align:center;
             font-family: "Arial",  arial, sans-serif;
@@ -100,6 +104,7 @@
             
     </head>
     <body>
+        <img src="{{baseurl}}/static/images/urbanator_v002.png" class="banner" margin="0" padding="0" alt="banner logo"/>
         <br><br>
         <p><button class="plain" onClick="shufflelink();" >Shuffle</button></p>
         <h2>{{ text }}</h2>

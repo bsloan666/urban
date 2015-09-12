@@ -64,7 +64,7 @@ def index():
     random = False
     unsafe = False
     animated = False 
-    base = "http://%s"%request.environ['HTTP_HOST']
+    base = "http://%s/"%request.environ['HTTP_HOST']
     curr = base
     animchecked = ""
     unsfchecked = ""
@@ -91,14 +91,15 @@ def index():
         imgurl = find_image(imgroot, animated, unsafe) 
 
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
+    thisview = "http://%s/?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
     if request.args.get('hof') is not None:
         table = hall_of_fame.build_table()
-        return render_template('halloffame.html.tpl', table=table )
+        return render_template('halloffame.html.tpl', table=table , current_url=curr,
+            baseurl=base)
     else:    
         return render_template('index.html.tpl', text=root, img=imgurl, 
             permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,

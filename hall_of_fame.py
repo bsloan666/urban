@@ -2,6 +2,8 @@ import os
 import sys
 import re
 
+from random import Random
+
 def parse_url(url):
     data = {}
     (home, args) = re.split("\?",url)
@@ -13,14 +15,22 @@ def parse_url(url):
     
     return data
 
+def random_color():
+    r = Random()
+    red = hex(r.randint(220,255))
+    green = hex(r.randint(220,255))
+    blue = hex(r.randint(220,255))
+    return "#"+red[-2:]+green[-2:]+blue[-2:]
+
+
 def table(contents):
    return '<table align="center" border="0" cellpadding="10">\n'+contents+'\n</table>\n'
 
 def row(contents):
     return '<tr>'+contents+'</tr>\n'
 
-def column(contents):
-    return '<td align=center>'+contents+'</td>'
+def column(contents, color):
+    return '<td align=center bgcolor="'+color+'">'+contents+'</td>'
 
 def img(adj,noun,link):
     return '<img align=center height="128" src="'+link+'" alt="'+adj+' '+noun+'"/>' 
@@ -28,7 +38,7 @@ def img(adj,noun,link):
 def link(adj,noun,img, link):
     adj = re.sub('\+',' ',adj)
     noun = re.sub('\+',' ',noun)
-    return '<a href="'+link+'"><b>'+adj+' '+noun+'</b><br/><br/>'+img+'</a>'
+    return '<a href="'+link+'"><b>'+adj+' '+noun+'</b><br/><p>'+img+'</p><br/><br/></a>'
 
 def load_faves():
     handle = open('favorites.txt','r')
@@ -43,8 +53,9 @@ def build_table():
     columns = 0
     for fave in faves[::-1]:
         data = parse_url(fave)
+        color = '#FFFFFF' 
         myrow += column(link(data['adj'], data['noun'], 
-            img(data['adj'], data['noun'],data['imgurl']), fave))
+            img(data['adj'], data['noun'],data['imgurl']), fave), color)
         columns = columns+1
         if columns >= 3:
             columns = 0

@@ -1,6 +1,10 @@
 <html>
     <head>
         <style>
+        html,body {
+            margin: 0; 
+            padding: 0;
+        }
         h2 {
             text-align:center;
             font-family: "Arial",  arial, sans-serif;
@@ -68,9 +72,10 @@
         </style>
     </head>
     <body>
-        <br><br>
-        <h2>Hall Of Fame</h2>
+        <img src="{{baseurl}}/static/images/urbanator_v002.png" margin="0" padding="0" class="banner" alt="banner logo"/>
         <br>
+        <h2>Hall of Fame</h2>
+        <a href={{current_url}}><p style="text-align:center">Back to Shuffle</p></a>
         <div id="center">
             <br>
             <p>
