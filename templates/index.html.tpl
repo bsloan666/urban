@@ -5,6 +5,11 @@
             margin: 0; 
             padding: 0;
         }
+        img.banner {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+        }
         h2 {
             text-align:center;
             font-family: "Arial",  arial, sans-serif;
