@@ -13,6 +13,8 @@ from flask import render_template
 from flask import request
 from flask import escape
 
+from flask.ext.cache import Cache
+
 import requests
 
 import generate
@@ -21,6 +23,8 @@ import hall_of_fame
 abort = False
 
 app = Flask(__name__)
+cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+
 
 def find_image(phrase, animated=False, unsafe=False):
     attempts = 0
@@ -52,19 +56,21 @@ def find_image(phrase, animated=False, unsafe=False):
 
     return ""
 
+
 def space_to_plus(mystr):
-    return re.sub(" ","+", mystr)    
+    return re.sub(" ","+", mystr)
+
 
 def colon_to_pct(mystr):
-    return re.sub(":","%3A", mystr)    
+    return re.sub(":","%3A", mystr)
+
 
 @app.route('/')
 def index():
-
     random = False
     unsafe = False
-    animated = False 
-    base = "http://%s/"%request.environ['HTTP_HOST']
+    animated = False
+    base = "http://%s" % request.environ['HTTP_HOST']
     curr = base
     animchecked = ""
     unsfchecked = ""
@@ -88,22 +94,32 @@ def index():
         imgroot = '%s %s'%(adj,noun)
         if random:
             imgroot = '%s %s'%(alt_adj,alt_noun)
-        imgurl = find_image(imgroot, animated, unsafe) 
+        imgurl = find_image(imgroot, animated, unsafe)
 
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s/?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
+    thisview = "http://%s/?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'],
         space_to_plus(adj),space_to_plus(noun), imgurl)
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
-    if request.args.get('hof') is not None:
-        table = hall_of_fame.build_table()
-        return render_template('halloffame.html.tpl', table=table , current_url=curr,
-            baseurl=base)
-    else:    
-        return render_template('index.html.tpl', text=root, img=imgurl, 
-            permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
-            animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
+    return render_template('index.html.tpl', text=root, img=imgurl,
+        permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
+        animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
+
+
+@app.route('/hall-of-fame')
+def hallOfFame():
+    base = "http://%s" % request.environ['HTTP_HOST']
+    curr = base
+    favorites_cache = cache.get('favorites')
+    if not favorites_cache:
+        data = hall_of_fame.load_faves()
+        favorites = hall_of_fame.process_faves(data)
+        cache.set('favorites', json.dumps(favorites))
+    else:
+        favorites = json.loads(favorites_cache)
+
+    return render_template('halloffame.html.tpl', favorites=favorites)
 
 
 if __name__ == '__main__':

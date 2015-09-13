@@ -2,7 +2,7 @@
     <head>
         <style>
         html,body {
-            margin: 0; 
+            margin: 0;
             padding: 0;
         }
         img.banner {
@@ -82,34 +82,34 @@
                     return 'a=1&';
                 }
                 return "";
-            }   
+            }
             function unsf() {
                 var x = document.getElementById("unsafeContent");
                 if(x.checked){
                     return 'u=1&';
                 }
                 return "";
-            }  
+            }
             function rndmr() {
                 var x = document.getElementById("randomNouns");
                 if(x.checked){
                     return 'r=1';
                 }
                 return "";
-            }  
+            }
             function shufflelink() {
                 window.location.href =
                   "{{current_url}}" + "/?" + anim() + unsf() + rndmr();
             }
             function halloffame() {
                 window.location.href =
-                  "{{current_url}}" + "/?hof=1";
+                  "{{current_url}}" + "/hall-of-fame";
             }
         </script>
-            
+
     </head>
     <body>
-        <img src="{{baseurl}}/static/images/urbanator_v002.png" class="banner" margin="0" padding="0" alt="banner logo"/>
+        <img src="/static/images/urbanator_v002.png" class="banner" margin="0" padding="0" alt="banner logo"/>
         <br><br>
         <p><button class="plain" onClick="shufflelink();" >Shuffle</button></p>
         <h2>{{ text }}</h2>
@@ -125,19 +125,19 @@
             <p>
             <b>Share</b>&nbsp
             <a href="https://www.facebook.com/sharer/sharer.php?u={{quotelink}}">
-            <img src="{{baseurl}}/static/images/facebook_gray_small.jpg" alt="fb" 
-                onmouseover="this.src='{{baseurl}}/static/images/facebook_blue_small.jpg'" 
-                onmouseout="this.src='{{baseurl}}/static/images/facebook_gray_small.jpg'"/></a>
+            <img src="/static/images/facebook_gray_small.jpg" alt="fb"
+                onmouseover="this.src='/static/images/facebook_blue_small.jpg'"
+                onmouseout="this.src='/static/images/facebook_gray_small.jpg'"/></a>
             <a href="https://twitter.com/home?status={{quotelink}}">
-            <img src="{{baseurl}}/static/images/twitter_gray_small.jpg" alt="twitter"
-                onmouseover="this.src='{{baseurl}}/static/images/twitter_blue_small.jpg'" 
-                onmouseout="this.src='{{baseurl}}/static/images/twitter_gray_small.jpg'"/></a>
+            <img src="/static/images/twitter_gray_small.jpg" alt="twitter"
+                onmouseover="this.src='/static/images/twitter_blue_small.jpg'"
+                onmouseout="this.src='/static/images/twitter_gray_small.jpg'"/></a>
             <a href="https://plus.google.com/share?url={{quotelink}}">
-            <img src="{{baseurl}}/static/images/googleplus_gray_small.jpg" alt="gplus"
-                onmouseover="this.src='{{baseurl}}/static/images/googleplus_red_small.jpg'"
-                onmouseout="this.src='{{baseurl}}/static/images/googleplus_gray_small.jpg'"/></a>
+            <img src="/static/images/googleplus_gray_small.jpg" alt="gplus"
+                onmouseover="this.src='/static/images/googleplus_red_small.jpg'"
+                onmouseout="this.src='/static/images/googleplus_gray_small.jpg'"/></a>
             </p>
-            <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea> 
+            <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><button class="plain" onClick="halloffame();" >Hall of Fame</button></p>
         </div>
     </body>
