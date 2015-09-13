@@ -91,7 +91,7 @@
               <tr>
                 {% for fav in fav_row %}
                 <td align=center bgcolor="#FFFFFF">
-                  <a href="http://{{fav['url']}}">
+                  <a href="{{fav['url']}}">
                     <b>{{fav['adj'][0]}} {{fav['noun'][0]}}</b><br/>
                     <p>
                       <img align=center height="128" src="{{fav['imgurl'][0]}}" alt="{{fav['adj'][0]}} {{fav['noun'][0]}}"/>
