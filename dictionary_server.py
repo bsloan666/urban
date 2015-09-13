@@ -88,6 +88,7 @@ def index():
         noun = escape(request.args.get('noun'))
         if request.args.get('imgurl'):
             imgurl = escape(request.args.get('imgurl'))
+            imgenc = b64encode(imgurl) 
         elif request.args.get('imgenc'):
             imgenc = request.args.get('imgenc')
             imgurl = escape(b64decode(imgenc))
