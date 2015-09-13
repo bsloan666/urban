@@ -50,6 +50,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 66%;
+            max-height: 40%;
             text-align: center;
         }
         textarea.displayed {
@@ -90,7 +91,7 @@
               <tr>
                 {% for fav in fav_row %}
                 <td align=center bgcolor="#FFFFFF">
-                  <a href="{{fav['url']}}">
+                  <a href="http://{{fav['url']}}">
                     <b>{{fav['adj'][0]}} {{fav['noun'][0]}}</b><br/>
                     <p>
                       <img align=center height="128" src="{{fav['imgurl'][0]}}" alt="{{fav['adj'][0]}} {{fav['noun'][0]}}"/>
