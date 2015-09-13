@@ -6,6 +6,7 @@ import sys
 import json
 import urllib2
 import cgi
+from base64 import b64encode,b64decode
 
 from flask import Flask
 from flask import make_response
@@ -79,20 +80,25 @@ def index():
         random = True
         randchecked = "checked"
 
-    if request.args.get('adj') and request.args.get('noun') and request.args.get('imgurl'):
+    if request.args.get('adj') and request.args.get('noun'):
         adj = escape(request.args.get('adj'))
         noun = escape(request.args.get('noun'))
-        imgurl = escape(request.args.get('imgurl'))
+        if request.args.get('imgurl'):
+            imgurl = escape(request.args.get('imgurl'))
+        elif request.args.get('imgenc'):
+            imgenc = request.args.get('imgenc')
+            imgurl = escape(b64decode(imgenc))
     else:
         adj,alt_adj,noun,alt_noun = generate.random_phrase_2()
         imgroot = '%s %s'%(adj,noun)
         if random:
             imgroot = '%s %s'%(alt_adj,alt_noun)
-        imgurl = find_image(imgroot, animated, unsafe) 
+        imgurl = find_image(imgroot, animated, unsafe)
+        imgenc = b64encode(imgurl)
 
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s/?adj=%s&noun=%s&imgurl=%s"%(request.environ['HTTP_HOST'], 
-        space_to_plus(adj),space_to_plus(noun), imgurl)
+    thisview = "http://%s/?adj=%s&noun=%s&imgenc=%s"%(request.environ['HTTP_HOST'], 
+        space_to_plus(adj),space_to_plus(noun), imgenc)
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
