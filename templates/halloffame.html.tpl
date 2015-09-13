@@ -3,7 +3,7 @@
         <title>Urbanator: Hall of Fame</title>
         <style>
         html,body {
-            margin: 0; 
+            margin: 0;
             padding: 0;
         }
         img.banner {
@@ -81,11 +81,27 @@
         <img src="{{baseurl}}/static/images/urbanator_v002.png" margin="0" padding="0" class="banner" alt="banner logo"/>
         <br>
         <h2>Hall of Fame</h2>
-        <a href={{current_url}}><p style="text-align:center">Back to Shuffle</p></a>
+        <a href="/"><p style="text-align:center">Back to Shuffle</p></a>
         <div id="center">
             <br>
             <p>
-            {{table}}
+            <table align="center" border="0" cellpadding="10">
+              {% for fav_row in favorites|batch(3) %}
+              <tr>
+                {% for fav in fav_row %}
+                <td align=center bgcolor="#FFFFFF">
+                  <a href="{{fav['url']}}">
+                    <b>{{fav['adj'][0]}} {{fav['noun'][0]}}</b><br/>
+                    <p>
+                      <img align=center height="128" src="{{fav['imgurl'][0]}}" alt="{{fav['adj'][0]}} {{fav['noun'][0]}}"/>
+                    </p>
+                    <br/><br/>
+                  </a>
+                </td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </table>
             </p>
         </div>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
