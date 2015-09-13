@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Urbanator: {{ text }} </title>
         <style>
         html,body {
             margin: 0; 
@@ -49,6 +50,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 66%;
+            max-height: 40%;
             text-align: center;
         }
         textarea.displayed {

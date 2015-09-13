@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Urbanator: Hall of Fame</title>
         <style>
         html,body {
             margin: 0; 
