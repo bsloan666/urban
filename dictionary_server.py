@@ -130,14 +130,14 @@ def index():
 
     root = '%s %s'%(adj,noun)
     info_data = b64encode(json.dumps(url_context))
-    thisview = "{}://{}/{}".format(
+    thisview = "{0}://{1}/{2}".format(
         request.environ['wsgi.url_scheme'],
         request.environ['HTTP_HOST'],
         info_data
     )
 
     if redirect_to_url:
-        return redirect('/{}'.format(info_data))
+        return redirect('/{0}'.format(info_data))
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
@@ -155,7 +155,7 @@ def saved(hash_value):
 
     return render_template(
         'detail.html.tpl',
-        text='{} {}'.format(data['adj'], data['noun']),
+        text='{0} {1}'.format(data['adj'], data['noun']),
         img=data['img'],
         imgenc=request.url,
         permalink=request.url,
