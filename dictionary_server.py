@@ -6,6 +6,7 @@ import sys
 import json
 import urllib2
 import cgi
+import hashlib
 from base64 import b64encode,b64decode
 
 from flask import Flask
@@ -13,6 +14,7 @@ from flask import make_response
 from flask import render_template
 from flask import request
 from flask import escape
+from flask import redirect
 
 from flask.ext.cache import Cache
 
@@ -25,6 +27,8 @@ abort = False
 
 app = Flask(__name__)
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+
+FAKE_SALT = os.getenv('FAKE_SALT', 'r01YxUMwfHJvWQak')
 
 def find_image(phrase, animated=False, unsafe=False):
     attempts = 0
@@ -62,6 +66,23 @@ def space_to_plus(mystr):
 def colon_to_pct(mystr):
     return re.sub(":","%3A", mystr)
 
+
+def protect_context(context):
+    hashed = hashlib.sha1(
+        '{adj}:{salt}:{img}:{noun}'.format(
+            adj=context['adj'],
+            salt=FAKE_SALT,
+            img=context['img'],
+            noun=context['noun'],
+        )
+    )
+    return hashed.hexdigest()
+
+def verify_context(context):
+    context_hash = context.pop('hash')
+    check_hash = protect_context(context)
+    return (context_hash == check_hash)
+
 @app.route('/')
 def index():
 
@@ -83,15 +104,17 @@ def index():
         random = True
         randchecked = "checked"
 
+    redirect_to_url = False
     if request.args.get('adj') and request.args.get('noun'):
         adj = escape(request.args.get('adj'))
         noun = escape(request.args.get('noun'))
         if request.args.get('imgurl'):
             imgurl = escape(request.args.get('imgurl'))
-            imgenc = b64encode(imgurl) 
+            imgenc = b64encode(imgurl)
         elif request.args.get('imgenc'):
             imgenc = request.args.get('imgenc')
             imgurl = escape(b64decode(imgenc))
+        redirect_to_url = True
     else:
         adj,alt_adj,noun,alt_noun = generate.random_phrase_2()
         imgroot = '%s %s'%(adj,noun)
@@ -100,15 +123,44 @@ def index():
         imgurl = find_image(imgroot, animated, unsafe)
         imgenc = b64encode(imgurl)
 
+    current_context = {'adj': adj, 'noun': noun, 'img': imgurl}
+    hashed_context = protect_context(current_context)
+    url_context = {'hash': hashed_context}
+    url_context.update(current_context)
+
     root = '%s %s'%(adj,noun)
-    thisview = "http://%s/?adj=%s&noun=%s&imgenc=%s"%(request.environ['HTTP_HOST'],
-        space_to_plus(adj),space_to_plus(noun), imgenc)
+    info_data = b64encode(json.dumps(url_context))
+    thisview = "{}://{}/{}".format(
+        request.environ['wsgi.url_scheme'],
+        request.environ['HTTP_HOST'],
+        info_data
+    )
+
+    if redirect_to_url:
+        return redirect('/{}'.format(info_data))
 
     quote=urllib2.quote(colon_to_pct(thisview))
 
     return render_template('index.html.tpl', text=root, img=imgurl,
         permalink=thisview, current_url=curr, baseurl=base, quotelink=quote,
         animchecked=animchecked, unsfchecked=unsfchecked, randchecked=randchecked)
+
+
+@app.route('/<hash_value>')
+def saved(hash_value):
+    json_data = b64decode(hash_value)
+    data = json.loads(json_data)
+    if not verify_context(data):
+        return redirect('/')
+
+    return render_template(
+        'detail.html.tpl',
+        text='{} {}'.format(data['adj'], data['noun']),
+        img=data['img'],
+        imgenc=request.url,
+        permalink=request.url,
+        quotelink=urllib2.quote(colon_to_pct(request.url)),
+    )
 
 
 @app.route('/hall-of-fame')
