@@ -45,15 +45,11 @@ def random_phrase_2():
     r = Random()
 
     r.seed(time.time())
-    sa = r.randint(0, len(show_adjs))
-    sn = r.randint(0, len(show_nouns))
-    ha = r.randint(0, len(hide_adjs))
-    hn = r.randint(0, len(hide_nouns))
 
-    noun =      show_nouns[sn].strip()
-    alt_noun =  hide_nouns[hn].strip()
-    adj =       show_adjs[sa].strip()
-    alt_adj =   hide_adjs[ha].strip()
+    noun =      r.choice(show_nouns).strip()
+    alt_noun =  r.choice(hide_nouns).strip()
+    adj =       r.choice(show_adjs).strip()
+    alt_adj =   r.choice(hide_adjs).strip()
 
     return (adj, alt_adj, noun, alt_noun)
 
