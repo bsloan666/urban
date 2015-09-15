@@ -92,7 +92,7 @@
         <h2>{{ text }}</h2>
         <br>
         <div id="center">
-            <img class="displayed" src="{{img}}" alt=" Oh, Google. Really? No images for {{text}}?" align="middle"/>
+            <img class="displayed" src="{{img}}" alt="Photograph depicting {{text}}?" align="middle"/>
             <br>
             <p>
             <b>Share</b>&nbsp
