@@ -2,6 +2,9 @@ import os
 import sys
 import re
 import urlparse
+import json
+import hashlib
+from base64 import b64encode,b64decode
 
 from random import Random
 
@@ -51,8 +54,18 @@ def process_faves(fav_lines):
     faves = []
     for fav in fav_lines:
         url_data = urlparse.urlparse(fav.strip())
-        parsed_url = urlparse.parse_qs(url_data.query)
-        parsed_url['url'] = fav.strip()
+        if '?' in fav:
+            parsed_url = urlparse.parse_qs(url_data.query)
+            parsed_url['url'] = fav.strip()
+        else:
+            encoded = re.split('/',fav)[-1].strip()
+            json_data = b64decode(encoded)
+            parsed_url = json.loads(json_data)
+            parsed_url['imgurl'] = [str(parsed_url['img'])]
+            parsed_url['noun'] = [str(parsed_url['noun'])]
+            parsed_url['adj'] = [str(parsed_url['adj'])]
+            parsed_url['url'] = fav.strip()
+            parsed_url.pop('img', 0)
         faves.append(parsed_url)
     return list(reversed(faves))
 
