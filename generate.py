@@ -44,7 +44,7 @@ def random_phrase_2():
 
     r = Random()
 
-    r.seed(time.time())
+    r.seed(int(time.time())%571)
 
     noun =      r.choice(show_nouns).strip()
     alt_noun =  r.choice(hide_nouns).strip()
