@@ -111,7 +111,7 @@
             </p>
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><a href="/hall-of-fame" class="plain">Hall of Fame</a></p>
-            <div id="disqus_thread" style="padding: 10%;"></div>
+            <div id="disqus_thread" style="padding-left: 10%; padding-right:10%;"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'urbanator';
