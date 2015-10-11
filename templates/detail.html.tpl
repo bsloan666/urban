@@ -76,7 +76,7 @@
         div.center {
             align: middle;
         }
-        div.with_margin {
+        div.disqus_thread {
             align: middle;
             max-width: 80%; 
         }
@@ -115,7 +115,6 @@
             </p>
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><a href="/hall-of-fame" class="plain">Hall of Fame</a></p>
-            <div id="with_margin"></div>
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
@@ -128,7 +127,6 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-        </div>
         </div>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
