@@ -76,10 +76,6 @@
         div.center {
             align: middle;
         }
-        div.disqus_thread {
-            max-width: 80%; 
-            width: 80%; 
-        }
         </style>
         <script language="JavaScript">
             function shufflelink() {
@@ -115,7 +111,7 @@
             </p>
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><a href="/hall-of-fame" class="plain">Hall of Fame</a></p>
-            <div id="disqus_thread"></div>
+            <div id="disqus_thread" style="padding: 10%;"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'urbanator';
