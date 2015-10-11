@@ -76,6 +76,10 @@
         div.center {
             align: middle;
         }
+        div.disqus_thread {
+            align: middle;
+            width: 80%; 
+        }
         </style>
         <script language="JavaScript">
             function shufflelink() {
@@ -115,7 +119,6 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'urbanator';
-    
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
