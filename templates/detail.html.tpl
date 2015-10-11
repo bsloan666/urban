@@ -77,8 +77,8 @@
             align: middle;
         }
         div.disqus_thread {
-            align: middle;
             max-width: 80%; 
+            width: 80%; 
         }
         </style>
         <script language="JavaScript">
