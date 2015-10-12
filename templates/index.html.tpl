@@ -49,6 +49,8 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
             max-width: 66%;
             max-height: 40%;
             text-align: center;
