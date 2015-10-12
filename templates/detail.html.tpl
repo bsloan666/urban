@@ -88,7 +88,7 @@
     <body>
         <img src="/static/images/urbanator_v002.png" class="banner" margin="0" padding="0" alt="banner logo"/>
         <br><br>
-        <p><a href="/" class="plain" >Shuffle</button></p>
+        <p><a href="/" class="plain" >Back to Shuffle</button></p>
         <h2>{{ text }}</h2>
         <br>
         <div id="center">

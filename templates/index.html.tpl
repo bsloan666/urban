@@ -121,6 +121,7 @@
             <input id="randomNouns" type="checkbox" name="r" {{randchecked}}/>randomer&nbsp
             </p>
             <p>
+            <a href="{{permalink}}" class="plain">Comment</a>&nbsp&nbsp
             <b>Share</b>&nbsp
             <a href="https://www.facebook.com/sharer/sharer.php?u={{quotelink}}">
             <img src="/static/images/facebook_gray_small.jpg" alt="fb"
