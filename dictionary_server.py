@@ -25,6 +25,10 @@ import hall_of_fame
 
 abort = False
 
+# urbanator_key
+google_api_key = 'AIzaSyCEJDdP3Y1P87OJUsdW9WyVXElt6b_bzCo'
+google_api_name = 'urbansearch-1168'
+
 app = Flask(__name__)
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 
@@ -34,13 +38,18 @@ def find_image(phrase, animated=False, unsafe=False):
     attempts = 0
 
     qs = {
-        "v": 1.0,
+        "key": google_api_key,
+        "cx": google_api_name,
         "q": phrase,
-        "imgsz": "large",
-        "userip": request.remote_addr,
+        "searchType": "image",
+        "imgSize": "large",
+        "imgType": "photo",
+        "userIp": request.remote_addr,
     }
     if not unsafe:
-        qs["safe"] =  "active",
+        qs["safe"] =  "medium"
+    else:
+        qs["safe"] =  "off"
 
     ext_filters = ['.jpg', '.png', '.gif']
     #ext_filters = ['.jpg']
@@ -49,14 +58,17 @@ def find_image(phrase, animated=False, unsafe=False):
         qs["as_filetype"] = "gif"
         ext_filters = ['.gif']
 
-    resp = requests.get("https://ajax.googleapis.com/ajax/services/search/images", params=qs)
+    resp = requests.get("https://www.googleapis.com/customsearch/v1", params=qs)
     if resp.status_code == 200:
         results = resp.json()
+        print "Results:",str(results)
         for imgdict in results['responseData']['results']:
             img_url = imgdict['url']
             _, ext = os.path.splitext(img_url)
             if ext.lower() in ext_filters:
                 return img_url
+    else:
+        print "Response:",resp.__dict__
 
     return ""
 
