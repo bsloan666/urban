@@ -26,7 +26,7 @@ import hall_of_fame
 abort = False
 
 # urbanator_key
-google_api_key = 'AIzaSyCEJDdP3Y1P87OJUsdW9WyVXElt6b_bzCo'
+google_api_key = os.getenv('GOOGLE_CUSTOM_SEARCH_KEY') 
 #google_api_name = 'urbansearch-1168'
 google_api_name = '008339482522121375689:itwzfsa-pus'
 
