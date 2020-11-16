@@ -1,1 +1,1 @@
-web: gunicorn dictionary_server:app --log-file -
+web: gunicorn dictionary_server:APP --log-file -
