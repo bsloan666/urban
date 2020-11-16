@@ -1,4 +1,4 @@
 flask
 gunicorn
 requests
-Flash-Cache
+Flask-Cache
