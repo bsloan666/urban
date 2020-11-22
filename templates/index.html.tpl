@@ -137,10 +137,6 @@
             <img src="/static/images/twitter_gray_small.jpg" alt="twitter"
                 onmouseover="this.src='/static/images/twitter_blue_small.jpg'"
                 onmouseout="this.src='/static/images/twitter_gray_small.jpg'"/></a>
-            <a href="https://plus.google.com/share?url={{quotelink}}">
-            <img src="/static/images/googleplus_gray_small.jpg" alt="gplus"
-                onmouseover="this.src='/static/images/googleplus_red_small.jpg'"
-                onmouseout="this.src='/static/images/googleplus_gray_small.jpg'"/></a>
             </p>
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><a href="/hall-of-fame" class="plain">Hall of Fame</a></p>
