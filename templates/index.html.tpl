@@ -141,8 +141,9 @@
             <textarea class="displayed" rows="4" cols="50">{{permalink}}</textarea>
             <p><a href="/hall-of-fame" class="plain">Hall of Fame</a></p>
         </div>
+<!-- urbanator_adsense_unit_v001
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- urbanator_adsense_unit_v001 -->
+        
         <ins class="adsbygoogle"
         style="display:inline-block;width:728px;height:90px"
         data-ad-client="ca-pub-7427143071084245"
@@ -150,5 +151,6 @@
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+-->
     </body>
 </html>
