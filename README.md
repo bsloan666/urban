@@ -1,6 +1,6 @@
 # urban 
 
-A flask app for generating Urban Dictionary-sounding phrases
+## A flask app for generating Urban Dictionary-sounding phrases
 
 CAUTION: The reader will find much to be offended by in the files 
 *.hide.db. They contain some hidden words used to "spice-up" the 
@@ -31,6 +31,12 @@ or sleep.
 
 For a good chukle, have a look at favorites.txt for some of this app's 
 more fortuitous outcomes.
+
+Editor's Note
+-------------
+It has been a few years since my last deploy. The code probably needs
+a baby wipe. 
+
 
 -B. Sloan
 
